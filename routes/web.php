@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,9 +19,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
+Route::get('/articles', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+
+// Route::controller(ArticleController::class)->group(function () {
+//     Route::get('/', [ArticleController::class, 'index'])->name('index');
+//     Route::get('/{article}/edit', [ArticleController::class, 'edit'])->name('edit');
+//     Route::patch('/{article}', [ArticleController::class, 'update'])->name('update');
+//     Route::delete('/{article}', [ArticleController::class, 'destroy'])->name('destroy');
+// })->prefix('articles')->as('articles.');
+
+Route::resource('articles', ArticleController::class)->names('article');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -28,4 +39,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
