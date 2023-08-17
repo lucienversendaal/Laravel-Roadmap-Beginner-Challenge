@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Article;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\ProfileController;
@@ -17,7 +18,17 @@ use App\Http\Controllers\ProfileController;
 
 // auth()->onceUsingId(1);
 
-Route::get('/', [ArticleController::class, 'index'])->name('home');
+Route::get('/', function () {
+    $articles = Article::latest()
+        ->paginate(3);
+    return view('welcome', [
+        'articles' => $articles
+    ]);
+})->name('home');
+
+Route::get('about-us', function () {
+    return view('about-us');
+})->name('about-us');
 
 // Route::get('/articles', function () {
 //     return view('dashboard');
@@ -31,7 +42,9 @@ Route::get('/', [ArticleController::class, 'index'])->name('home');
 //     Route::delete('/{article}', [ArticleController::class, 'destroy'])->name('destroy');
 // })->prefix('articles')->as('articles.');
 
-Route::resource('articles', ArticleController::class)->names('article')->middleware('auth');
+Route::resource('articles', ArticleController::class)->names('article')->parameters([
+    'articles' => 'article:slug',
+]);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

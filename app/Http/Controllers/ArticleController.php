@@ -15,10 +15,9 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articles = Article::latest()
-            ->paginate(3);
+        $articles = Article::all();
 
-        return view('welcome', [
+        return view('article.index', [
             'articles' => $articles
         ]);
     }
@@ -28,7 +27,7 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        return view('articles.create', [
+        return view('article.create', [
             'categories' => Category::orderBy('name')->get()
         ]);
     }
@@ -57,9 +56,11 @@ class ArticleController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $slug)
     {
-        //
+        return view('article.show', [
+            'article' => Article::where('slug', $slug)->firstOrFail()
+        ]);
     }
 
     /**

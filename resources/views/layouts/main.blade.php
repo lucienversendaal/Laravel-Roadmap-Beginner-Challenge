@@ -17,7 +17,7 @@
 </head>
 
 <body class="font-sans antialiased">
-    <div class="min-h-screen bg-gray-100">
+    <div class="bg-gray-100 ">
         @include('layouts.main-navigation')
 
         <!-- Page Heading -->
@@ -35,13 +35,9 @@
         </main>
 
         <!-- Page footer -->
-        @if (isset($footer))
-            <footer class="bg-gray-200">
-                <div class="px-6 py-12 mx-auto max-w-7xl md:flex md:items-center md:justify-between lg:px-8">
-                    {{ $footer }}
-                </div>
-            </footer>
-        @endif
+        <footer class="bg-gray-200 ">
+            @include('sections._footer')
+        </footer>
     </div>
 </body>
 @stack('script')

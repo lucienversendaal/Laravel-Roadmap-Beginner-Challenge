@@ -4,34 +4,37 @@
             class="relative z-10 flex items-center w-auto text-2xl font-extrabold leading-none text-black select-none">laravelish.</a>
         <nav
             class="top-0 left-0 z-0 flex items-center justify-center w-full h-full py-5 -ml-0 space-x-5 text-base md:-ml-5 md:py-0 md:absolute">
-            <a href="#_"
+            <a href="/"
                 class="relative font-medium leading-6 text-gray-600 transition duration-150 ease-out hover:text-gray-900"
                 x-data="{ hover: false }" @mouseenter="hover = true" @mouseleave="hover = false">
                 <span class="block">Home</span>
                 <span class="absolute bottom-0 left-0 inline-block w-full h-0.5 -mb-1 overflow-hidden">
-                    <span x-show="hover" class="absolute inset-0 inline-block w-full h-1 h-full transform bg-gray-900"
+                    <span x-cloak x-show="{{ request()->routeIs('home') ? 'true' : 'hover' }}"
+                        class="absolute inset-0 inline-block w-full h-1 h-full transform bg-gray-900"
                         x-transition:enter="transition ease duration-200" x-transition:enter-start="scale-0"
                         x-transition:enter-end="scale-100" x-transition:leave="transition ease-out duration-300"
                         x-transition:leave-start="scale-100" x-transition:leave-end="scale-0"></span>
                 </span>
             </a>
-            <a href="#_"
+            <a href="{{ route('article.index') }}"
                 class="relative font-medium leading-6 text-gray-600 transition duration-150 ease-out hover:text-gray-900"
                 x-data="{ hover: false }" @mouseenter="hover = true" @mouseleave="hover = false">
                 <span class="block">Articles</span>
                 <span class="absolute bottom-0 left-0 inline-block w-full h-0.5 -mb-1 overflow-hidden">
-                    <span x-show="hover" class="absolute inset-0 inline-block w-full h-1 h-full transform bg-gray-900"
+                    <span x-cloak x-show="{{ request()->routeIs('article.index') ? 'true' : 'hover' }}"
+                        class="absolute inset-0 inline-block w-full h-1 h-full transform bg-gray-900"
                         x-transition:enter="transition ease duration-200" x-transition:enter-start="scale-0"
                         x-transition:enter-end="scale-100" x-transition:leave="transition ease-out duration-300"
                         x-transition:leave-start="scale-100" x-transition:leave-end="scale-0"></span>
                 </span>
             </a>
-            <a href="#_"
+            <a href="{{ route('about-us') }}"
                 class="relative font-medium leading-6 text-gray-600 transition duration-150 ease-out hover:text-gray-900"
                 x-data="{ hover: false }" @mouseenter="hover = true" @mouseleave="hover = false">
                 <span class="block">About us</span>
                 <span class="absolute bottom-0 left-0 inline-block w-full h-0.5 -mb-1 overflow-hidden">
-                    <span x-show="hover" class="absolute inset-0 inline-block w-full h-1 h-full transform bg-gray-900"
+                    <span x-cloak x-show="{{ request()->routeIs('about-us') ? 'true' : 'hover' }}"
+                        class="absolute inset-0 inline-block w-full h-1 h-full transform bg-gray-900"
                         x-transition:enter="transition ease duration-200" x-transition:enter-start="scale-0"
                         x-transition:enter-end="scale-100" x-transition:leave="transition ease-out duration-300"
                         x-transition:leave-start="scale-100" x-transition:leave-end="scale-0"></span>

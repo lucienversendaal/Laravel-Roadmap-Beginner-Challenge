@@ -74,16 +74,14 @@
                             <div class="relative group">
                                 <h3
                                     class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
-                                    <a href="#">
+                                    <a href="{{ $article->route() }}">
                                         <span class="absolute inset-0"></span>
-                                        Boost your conversion rate
+                                        {{ $article->title }}
                                     </a>
                                 </h3>
-                                <p class="mt-5 text-sm leading-6 text-gray-600 line-clamp-1">Illo sint voluptas. Error
-                                    voluptates culpa eligendi. Hic vel totam vitae illo. Non aliquid explicabo
-                                    necessitatibus unde. Sed exercitationem placeat consectetur nulla deserunt vel.
-                                    Iusto
-                                    corrupti dicta.</p>
+                                <p class="mt-5 text-sm leading-6 text-gray-600 line-clamp-1">
+                                    {{ $article->content }}
+                                </p>
                             </div>
                             <div class="relative flex items-center mt-8 gap-x-4">
                                 <img src="{{ $image }}" alt=""
@@ -92,10 +90,9 @@
                                     <p class="font-semibold text-gray-900">
                                         <a href="#">
                                             <span class="absolute inset-0"></span>
-                                            Michael Foster
+                                            {{ $article->user->name }}
                                         </a>
                                     </p>
-                                    <p class="text-gray-600">Co-Founder / CTO</p>
                                 </div>
                             </div>
                         </div>
