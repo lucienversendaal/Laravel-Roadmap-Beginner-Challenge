@@ -15,13 +15,13 @@ use App\Http\Controllers\ProfileController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// auth()->onceUsingId(1);
 
-Route::get('/articles', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/', [ArticleController::class, 'index'])->name('home');
+
+// Route::get('/articles', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 
 // Route::controller(ArticleController::class)->group(function () {
@@ -31,7 +31,7 @@ Route::get('/articles', function () {
 //     Route::delete('/{article}', [ArticleController::class, 'destroy'])->name('destroy');
 // })->prefix('articles')->as('articles.');
 
-Route::resource('articles', ArticleController::class)->names('article');
+Route::resource('articles', ArticleController::class)->names('article')->middleware('auth');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

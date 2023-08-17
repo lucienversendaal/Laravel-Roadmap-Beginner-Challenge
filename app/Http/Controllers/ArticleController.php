@@ -16,9 +16,9 @@ class ArticleController extends Controller
     public function index()
     {
         $articles = Article::latest()
-            ->paginate(10);
+            ->paginate(3);
 
-        return view('dashboard', [
+        return view('welcome', [
             'articles' => $articles
         ]);
     }
