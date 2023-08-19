@@ -15,45 +15,13 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articles = Article::all();
+        $articles = Article::latest()->paginate(6);
 
         return view('article.index', [
             'articles' => $articles
         ]);
     }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        return view('article.create', [
-            'categories' => Category::orderBy('name')->get()
-        ]);
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreArticleRequest $request)
-    {
-
-        $fileName = time() . '.' . $request->image->extension();
-        $request->image->storeAs('public/images', $fileName);
-
-        Article::create([
-            'title' => $request->title,
-            'content' => $request->content,
-            'image_url' => $fileName,
-            'category_id' => $request->category,
-            'tags' => $request->tags,
-            'user_id' => auth()->user()->id
-        ]);
-
-        return redirect()->route('article.index');
-    }
-
-    /**
+    /*
      * Display the specified resource.
      */
     public function show(string $slug)
@@ -61,36 +29,5 @@ class ArticleController extends Controller
         return view('article.show', [
             'article' => Article::where('slug', $slug)->firstOrFail()
         ]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
-
-    public function dummyData()
-    {
-        return [
-            'title' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.',
-        ];
     }
 }

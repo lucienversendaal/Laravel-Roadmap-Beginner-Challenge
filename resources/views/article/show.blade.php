@@ -1,7 +1,7 @@
 <x-main-layout>
     <div class="px-6 pt-20 bg-white lg:px-8 pb-96">
         <div class="flex my-10">
-            <a href="#"
+            <a href="{{ route('article.index') }}"
                 class="text-base font-semibold leading-7 text-blue-500 hover:text-blue-700 hover:underline"><span
                     aria-hidden="true">&larr;</span>Back to overview</a>
         </div>

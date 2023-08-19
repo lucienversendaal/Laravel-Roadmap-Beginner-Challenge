@@ -12,10 +12,10 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('article.index')" :active="request()->routeIs('article.index')">
+                    <x-nav-link :href="route('admin.articles.index')" :active="request()->routeIs('admin.articles.index')">
                         {{ __('Articles') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('article.create')" :active="request()->routeIs('article.create')">
+                    <x-nav-link :href="route('admin.articles.create')" :active="request()->routeIs('admin.articles.create')">
                         {{ __('Create Article') }}
                     </x-nav-link>
                 </div>
@@ -82,7 +82,7 @@
     @auth
         <div :class="{ 'block': open, 'hidden': !open }" class="hidden sm:hidden">
             <div class="pt-2 pb-3 space-y-1">
-                <x-responsive-nav-link :href="route('article.index')" :active="request()->routeIs('article.index')">
+                <x-responsive-nav-link :href="route('admin.articles.index')" :active="request()->routeIs('admin.articles.index')">
                     {{ __('Articles') }}
                 </x-responsive-nav-link>
             </div>

@@ -37,21 +37,12 @@
             </h1>
             <div class="grid max-w-2xl grid-cols-1 mx-auto mt-16 gap-x-8 gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
                 @foreach ($articles as $article)
-                    @php
-                        if ($loop->iteration == 1) {
-                            $image = 'https://cdn.devdojo.com/images/may2021/quench-satisfying.jpg';
-                        } elseif ($loop->iteration == 2) {
-                            $image = 'https://cdn.devdojo.com/images/may2021/orange.jpg';
-                        } else {
-                            $image = 'https://cdn.devdojo.com/images/may2021/gbc.jpg';
-                        }
-                    @endphp
-                    <article class="flex flex-col items-start justify-between">
+                    <article class="relative flex flex-col items-start justify-between group">
                         <div class="relative w-full">
                             <div
                                 class="relative flex flex-col items-start justify-end h-full col-span-12 overflow-hidden rounded-xl group md:col-span-6 xl:col-span-4">
-                                <div class="block w-full transition duration-300 ease-in-out transform bg-center bg-cover h-96 hover:scale-110"
-                                    style="background-image:url('{{ $image }}')">
+                                <div class="block w-full transition duration-300 ease-in-out transform bg-center bg-cover h-96 group-hover:scale-110"
+                                    style="background-image:url('{{ $article->getImage() }}')">
                                 </div>
                             </div>
                         </div>
@@ -84,7 +75,7 @@
                                 </p>
                             </div>
                             <div class="relative flex items-center mt-8 gap-x-4">
-                                <img src="{{ $image }}" alt=""
+                                <img src="{{ $article->getImage() }}" alt=""
                                     class="w-10 h-10 bg-gray-100 rounded-full">
                                 <div class="text-sm leading-6">
                                     <p class="font-semibold text-gray-900">
@@ -96,9 +87,11 @@
                                 </div>
                             </div>
                         </div>
+                        <a href="{{ $article->route() }}" alt="{{ $article->title }}" class="absolute inset-0 z-10 ">
+                            <span class="sr-only">{{ $article->title }}</span>
+                        </a>
                     </article>
                 @endforeach
-
             </div>
         </div>
     </div>

@@ -15,13 +15,20 @@ class Article extends Model
         'tags' => 'array'
     ];
 
-    protected $with = ['category'];
+    protected $with = ['category', 'user'];
     protected $guarded = [];
 
     //create function to get the image from the storage
-    public function getImageUrlAttribute($value)
+    public function getImage()
     {
-        return asset('storage/images/' . $value);
+        $imagePath = 'storage/images/' . $this->image_url;
+        $imageExtension = pathinfo($imagePath, PATHINFO_EXTENSION);
+
+        if (in_array($imageExtension, ['png', 'jpg', 'jpeg'])) {
+            return asset($imagePath);
+        }
+
+        return $this->image_url;
     }
 
     public function route()

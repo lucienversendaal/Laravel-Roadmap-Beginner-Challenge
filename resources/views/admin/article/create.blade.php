@@ -12,7 +12,7 @@
                     {{ __('Create article') }}
                 </div>
                 <div>
-                    <form action="{{ route('article.store') }}" method="POST" class="max-w-xl mx-auto"
+                    <form action="{{ route('admin.articles.store') }}" method="POST" class="max-w-xl mx-auto"
                         enctype="multipart/form-data">
                         @csrf
                         <div class="mb-4">

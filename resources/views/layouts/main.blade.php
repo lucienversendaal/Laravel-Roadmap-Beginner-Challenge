@@ -35,9 +35,7 @@
         </main>
 
         <!-- Page footer -->
-        <footer class="bg-gray-200 ">
-            @include('sections._footer')
-        </footer>
+        @include('sections._footer')
     </div>
 </body>
 @stack('script')
