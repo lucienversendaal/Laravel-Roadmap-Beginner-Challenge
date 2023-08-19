@@ -4,6 +4,7 @@ use App\Models\Article;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ArticleController as AdminArticleController;
 
 /*
@@ -25,12 +26,19 @@ Route::get('admin', function () {
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth', 'as' => 'admin.'], function () {
     //group articles route
-    Route::group(['prefix' => 'articles'], function () {
-        Route::get('/', [AdminArticleController::class, 'index'])->name('articles.index');
-        Route::get('/create', [AdminArticleController::class, 'create'])->name('articles.create');
-        Route::get('/edit/{article}', [AdminArticleController::class, 'edit'])->name('articles.edit');
-        Route::post('/create', [AdminArticleController::class, 'store'])->name('articles.store');
-        Route::post('/update/{article}', [AdminArticleController::class, 'update'])->name('articles.update');
+    Route::group(['prefix' => 'articles', 'as' => 'articles.'], function () {
+        Route::get('/', [AdminArticleController::class, 'index'])->name('index');
+        Route::get('/create', [AdminArticleController::class, 'create'])->name('create');
+        Route::get('/edit/{article}', [AdminArticleController::class, 'edit'])->name('edit');
+        Route::post('/create', [AdminArticleController::class, 'store'])->name('store');
+        Route::post('/update/{article}', [AdminArticleController::class, 'update'])->name('update');
+    });
+    Route::group(['prefix' => 'categories', 'as' => 'categories.'], function () {
+        Route::get('/', [CategoryController::class, 'index'])->name('index');
+        Route::get('/create', [CategoryController::class, 'create'])->name('create');
+        Route::get('/edit/{category}', [CategoryController::class, 'edit'])->name('edit');
+        Route::post('/create', [CategoryController::class, 'store'])->name('store');
+        Route::post('/update/{category}', [CategoryController::class, 'update'])->name('update');
     });
 });
 

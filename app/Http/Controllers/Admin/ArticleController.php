@@ -69,7 +69,7 @@ class ArticleController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $article)
+    public function edit($article)
     {
 
         $article = Article::where('user_id', Auth::user()->id)->findOrFail($article);
@@ -85,11 +85,8 @@ class ArticleController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $article)
+    public function update(Request $request, Article $article)
     {
-
-        $article = Article::findOrFail($article);
-
         //get the new image
         if ($request->hasFile('image')) {
             $this->updateArticleImage($article, $request->file('image'));
