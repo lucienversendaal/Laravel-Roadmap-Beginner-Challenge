@@ -4,6 +4,7 @@ use App\Models\Article;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ArticleController as AdminArticleController;
 
@@ -39,6 +40,13 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth', 'as' => 'admin.'], fu
         Route::get('/edit/{category}', [CategoryController::class, 'edit'])->name('edit');
         Route::post('/create', [CategoryController::class, 'store'])->name('store');
         Route::post('/update/{category}', [CategoryController::class, 'update'])->name('update');
+    });
+    Route::group(['prefix' => 'tags', 'as' => 'tags.'], function () {
+        Route::get('/', [TagController::class, 'index'])->name('index');
+        Route::get('/create', [TagController::class, 'create'])->name('create');
+        Route::get('/edit/{category}', [TagController::class, 'edit'])->name('edit');
+        Route::post('/create', [TagController::class, 'store'])->name('store');
+        Route::post('/update/{category}', [TagController::class, 'update'])->name('update');
     });
 });
 

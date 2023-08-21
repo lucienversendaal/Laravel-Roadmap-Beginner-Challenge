@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Tag;
 use App\Models\Article;
 use App\Models\Category;
 use Illuminate\Support\Str;
@@ -33,7 +34,8 @@ class ArticleController extends Controller
     public function create()
     {
         return view('admin.article.create', [
-            'categories' => Category::orderBy('name')->get()
+            'categories' => Category::orderBy('name')->get(),
+            'tags' => Tag::orderBy('name')->get()
         ]);
     }
 
@@ -45,13 +47,17 @@ class ArticleController extends Controller
         $fileName = time() . '.' . $request->image->extension();
         $request->image->storeAs('public/images', $fileName);
 
+        //store tags as string
+        // $tags = explode(',',);
+
+        rd($request->all());
         Article::create([
             'title' => $request->title,
             'slug' => Str::slug($request->title),
             'content' => $request->content,
             'image_url' => $fileName,
+            'tag_ids' => $request->tags,
             'category_id' => $request->category,
-            'tags' => $request->tags,
             'user_id' => auth()->user()->id
         ]);
 

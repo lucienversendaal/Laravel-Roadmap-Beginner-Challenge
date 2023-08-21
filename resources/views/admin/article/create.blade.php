@@ -33,10 +33,17 @@
                         </div>
                         <div class="mb-4">
                             <label for="tags" class="block mb-2 font-bold text-gray-700">Tags</label>
-                            <input name="tags[]" id="tags" value="tag1, tag2, tag3"
+
+                            <select name="tags" class="text-black placeholder:text-black" data-te-select-init
+                                data-te-select-placeholder="Select tags" multiple>
+                                @foreach ($tags as $tag)
+                                    <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                                @endforeach
+                            </select>
+                            {{-- <input name="tags[]" id="tags" value="tag1, tag2, tag3"
                                 class="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                                 required placeholder="tag1, tag2, tag3" />
-                            <span class="text-xs italic text-gray-500">Separate tags with comma</span>
+                            <span class="text-xs italic text-gray-500">Separate tags with comma</span> --}}
                         </div>
                         <div class="mb-4">
                             <label for="category" class="block mb-2 font-bold text-gray-700">Category</label>

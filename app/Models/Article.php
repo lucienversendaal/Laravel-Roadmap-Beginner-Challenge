@@ -12,7 +12,7 @@ class Article extends Model
     use HasFactory;
 
     protected $casts = [
-        'tags' => 'array'
+        'tag_ids' => 'array'
     ];
 
     protected $with = ['category', 'user'];

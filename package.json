@@ -16,6 +16,7 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
-        "@yaireo/tagify": "^4.17.8"
+        "@yaireo/tagify": "^4.17.8",
+        "tw-elements": "^1.0.0-beta3"
     }
 }
